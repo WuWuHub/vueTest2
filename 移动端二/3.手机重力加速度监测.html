@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手机加速度监测</title>
+    <style>
+      #box{
+          position: absolute;
+          top:50%;
+          left:50%;
+          width:100px;
+          height: 100px;
+          background: blue;
+          margin:-50px -50px;
+
+      }
+    </style>
+</head>
+<body>
+    <div id='box'></div>
+</body>
+<script>
+    /*
+        手机加速加速度监测：
+            方法：devicemotion
+            属性：e.acceleration   //返回x,y,z 方向上的加速度
+
+        手机重力加速监测：加速度+重力
+            属性：e.accelerationIncludingGravity   //返回x,y,z 方向上的重力加速度
+
+        由此可计算出手机重力；
+            一些重力游戏就是依据手机的重力来操作
+
+        iphone真机调试时出现的bug:
+
+    */
+    
+    let box=document.querySelector('#box');
+    let translateX=0;
+    window.addEventListener('devicemotion',(e)=>{
+        console.log(e.acceleration);  //返回x y z三个方向上的手机加速度
+        console.log(e.accelerationIncludingGravity)
+        let {x1}=e.acceleration;
+        let {x}= e.accelerationIncludingGravity;
+        x-=x1
+       translateX +=x
+       console.log(translateX)
+       box.style.transform=`translateX(${translateX}px)`
+    })
+</script>
+</html>

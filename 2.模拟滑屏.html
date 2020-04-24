@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟滑屏</title>
+    <style>
+        #box{
+            position: absolute;
+            top:50px;
+            width:200px;
+            height: 200px;
+            border:1px solid red;
+            overflow:-hidden ;
+        }
+      #list{
+          list-style: none;
+      }
+    </style>
+</head>
+<body>
+    <div id='box'>
+        <ul id='list'>
+
+        </ul>
+    </div>
+</body>
+<script>
+   let box=document.querySelector('#box');
+   let list=document.querySelector('#list');
+   list.innerHTML=[...".".repeat(100)].map((item,index)=>{
+       return `<li>第${index}个li...</li>`
+   }).join("")
+   document.addEventListener('touchstart',e=>{
+       e.preventDefault()
+   },{
+       passive:false  //允许组织默认事件
+   })
+
+    let listStartY=0;   //元素移动位置
+    let listTouchY=0;  //手指按下元素位置
+    let touchStartY=0;    //手指按下位置
+    let touchEndY=0;     //手指移动后位置
+    let spc=0;   //移动距离
+
+   box.addEventListener('touchstart',e=>{
+        //console.log(e)
+        listTouchY=listStartY
+        touchStartY=e.changedTouches[0].pageY;
+        //console.log(touchStartY)
+   })
+
+   box.addEventListener('touchmove',e=>{
+       //console.log(e)
+       touchEndY=e.changedTouches[0].pageY;
+       spc= touchEndY- touchStartY;
+        listStartY=spc+ listTouchY;
+        list.transition='.3s'
+        list.style.transform=`translateY(${listStartY}px)`
+   })
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>横竖屏监测</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+   /*
+       横竖屏监测：
+            window下的一个方法：window.orientation(每次需要刷新)返回的是一个状态码
+            有一个方法：orientationchange
+
+            window.orientation状态码：
+            竖屏：0  180
+            横屏：-90  90
+            
+   */
+   //console.log(window.orientation)   //需要刷新，才会返回值
+   window.addEventListener('orientationchange',(e)=>{
+      console.log(window.orientation) //返回状态码
+   })
+
+</script>
+</html>

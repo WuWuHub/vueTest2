@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scale=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动端touch事件</title>
+    <style>
+       #box{
+           position: absolute;
+           top:0;
+           left:0;
+           width:300px;
+           height: 300px;
+           background:blue;
+       }
+    </style>
+</head>
+<body>
+    <div id='box'></div>
+</body>
+<script>
+ /*
+   touch事件：
+        touchstart:手指按下
+        touchmove：手指移动
+        touchend:手指抬起
+    
+    touches、targetTouches、changeTouches
+ 
+ */
+  {
+      let box=document.querySelector("#box");
+      box.addEventListener('touchstart',(e)=>{
+          console.log(e)
+      })
+      box.addEventListener('touchmove',(e)=>{
+          console.log(e)
+      })
+      box.addEventListener('touchend',(e)=>{
+          console.log(e)
+      })
+  }
+</script>
+</html>

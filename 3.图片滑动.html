@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片滑动</title>
+    <style>
+     *{
+          margin:0px;
+          padding: 0px;
+      }
+      html{
+          font-size: 10vw;
+      }
+      #box{
+          position:relative;
+          width:100vw;
+          top:0;
+          left: 0;
+      }
+    #list{
+        position: fixed;
+        float: left;  
+        list-style: none;
+        display: -webkit-box;
+    }
+     #list li{
+        flex:none;
+        width:100%;
+     }
+      #list img{
+          width:100%;
+          display: block;
+      }
+      .nav {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            vertical-align: top;
+            top:4.5rem;
+        }
+        .nav a {
+            display: inline-block;
+            width: 0.25rem;
+            height: 0.15rem;
+            background: #fff;
+            margin: 0 0.1rem;
+            border-radius: 0.2rem;
+            transition: .3s;
+        }
+        .nav .active {
+            width: .6rem;  
+            color: #fff;  
+        }
+    </style>
+</head>
+<body>
+    <div id='box'>
+        <ul id='list'>
+            <li><img src="img/banner01.png"</li>
+            <li><img src="img/banner02.png"</li>
+            <li><img src="img/banner03.png" </li>
+            <li><img src="img/banner04.png" </li>
+        </ul>
+        <nav class='nav'>
+            <a class='active'></a><a></a><a></a><a></a>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener('touchstart',e=>{
+            e.preventDefault()
+        },{
+            passive:false
+        })
+
+        let box=document.querySelector('#box');
+        let list=document.querySelector('#list');
+        let navs=document.querySelectorAll('.nav a');
+        
+        let eleStart=0;    //手指移动位置
+        let eleTouch=0;   //手指按下元素位置
+        let touchStart={};  //手指按下位置
+        let touchEnd={};   //手指移动位置
+        let move={};   //移动距离
+        box.addEventListener('touchstart',e=>{
+            eleTouch=eleStart;
+            
+        })
+    </script>
+</body>
+</html>

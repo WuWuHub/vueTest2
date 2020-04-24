@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手机加速度监测</title>
+    <style>
+      #box{
+          position: fixed;
+          top:0;
+          left:0;
+          width:200px;
+          height: 200px;
+          font:16px/30px "微软雅黑";
+          border: 1px solid red;
+
+      }
+    </style>
+</head>
+<body>
+    <div id='box'></div>
+</body>
+<script>
+    /*
+        手机加速加速度监测：
+            方法：devicemotion
+            属性：e.acceleration   //返回x,y,z 方向上的加速度
+
+        手机重力加速监测：加速度+重力
+            属性：e.accelerationIncludingGravity   //返回x,y,z 方向上的重力加速度
+
+        由此可计算出手机重力；
+            一些重力游戏就是依据手机的重力来操作
+
+        window.deviceMotionEvent  //判断是否支持devicemotion事件
+
+    */
+    
+    let box=document.querySelector('#box');
+    function tic(){
+        if(!window.DeviceMotionEvent){
+        alert('错误')
+        return false
+    }
+    window.addEventListener('devicemotion',(e)=>{
+        console.log(e.acceleration);  //返回x y z三个方向上的手机加速度
+        let {x,y,z}=e.acceleration;
+        box.innerHTML=`
+            手机X方向上的加速度：${x.toFixed(0)}<br/>
+            手机Y方向上的加速度：${y.toFixed(0)}<br/>
+            手机Z方向上的加速度：${z.toFixed(0)}<br/>
+        `
+    })
+    }
+
+    tic()
+</script>
+</html>
